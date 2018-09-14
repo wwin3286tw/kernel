@@ -2,5 +2,6 @@ language: minimal
 before_install:
   - sudo apt-get install -y cmake build-essential
 script:
+ - make defconfig
  - make ARCH=arm64 nanopi4_linux_defconfig
  - make ARCH=arm64 nanopi4-images
