@@ -2,6 +2,12 @@ language: minimal
 before_install:
   - sudo apt-get install -y cmake build-essential
 script:
+ - git clone https://github.com/friendlyarm/prebuilts.git
+ - sudo mkdir -p /opt/FriendlyARM/toolchain
+ - sudo tar xf prebuilts/gcc-x64/aarch64-cortexa53-linux-gnu-6.4.tar.xz -C /opt/FriendlyARM/toolchain/
+ - echo "export PATH=/opt/FriendlyARM/toolchain/6.4-aarch64/bin:$PATH" >>~/.bashrc 
+ - echo "export GCC_COLORS=auto">>~/.bashrc
+ - . ~/.bashrc
  - make defconfig
  - make ARCH=arm64 nanopi4_linux_defconfig
  - make ARCH=arm64 nanopi4-images
